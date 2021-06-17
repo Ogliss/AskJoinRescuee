@@ -1,0 +1,8 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\JoinAsk - Copy\Source\JoinsPlus\JoinsPlus\obj\Debug\RescueeJoinPlus.csprojAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\JoinAsk - Copy\Source\JoinsPlus\JoinsPlus\obj\Debug\RescueeJoinPlus.csproj.CopyComplete
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\JoinAsk - Copy\Assemblies\RescueeJoinPlus.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\JoinAsk - Copy\Source\JoinsPlus\JoinsPlus\obj\Debug\RescueeJoinPlus.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\AskJoinRescuee\Assemblies\RescueeJoinPlus.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\AskJoinRescuee\Source\JoinsPlus\JoinsPlus\obj\Debug\RescueeJoinPlus.csprojAssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\AskJoinRescuee\Source\JoinsPlus\JoinsPlus\obj\Debug\RescueeJoinPlus.csproj.CopyComplete
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\AskJoinRescuee\Source\JoinsPlus\JoinsPlus\obj\Debug\RescueeJoinPlus.dll

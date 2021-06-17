@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <RescueeJoinTitle>Rescuee join request at {0}</RescueeJoinTitle>
+  <RescueeJoinDesc>{0} the {1} that you rescued is thankful that you saved him and would like join the colony.\n\n{0} is a {2} year old</RescueeJoinDesc>
+  <RescueeJoinAlienDesc>{0} the {1} that you rescued is thankful that you saved him and would like join the colony.\n\n{0} is a {2} year old {3}</RescueeJoinAlienDesc>
+  <RescueeJoinAccept>Accept</RescueeJoinAccept>
+  <RescueeJoinReject>Reject</RescueeJoinReject>
+  <PassionateFor>Passionate for</PassionateFor>
+  <PassionateMajor> (Major)</PassionateMajor>
+  <!--<PassionateMinor> (Minor)</PassionateMinor>-->
+  <RaceInfo>(Race: {0} )</RaceInfo>
+  
+</LanguageData>
