@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <ProjectGuid>{93CC485A-FB44-4AD2-A4F0-7210CCE773B2}</ProjectGuid>
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -8,18 +8,14 @@
     <OutputType>Library</OutputType>
     <RootNamespace>RescueeJoinPlus</RootNamespace>
     <AssemblyName>RescueeJoinPlus</AssemblyName>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <TargetFrameworkProfile />
     <NoWin32Manifest>False</NoWin32Manifest>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <Deterministic>false</Deterministic>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
@@ -46,52 +42,41 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="RJP_Pawn_MindState_JoinColonyBecauseRescuedBy_RescueeJoin_Patch.cs" />
     <Compile Include="GenPersonStatText.cs" />
     <Compile Include="RescueeJoinPlus.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RJP_Pawn_MindState_JoinColonyBecauseRescuedBy_RescueeJoin_Patch.cs" />
     <Compile Include="RJP_Pawn_GuestTracker_Notify_PawnUndowned_RescueeJoin_Patch.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.3.0" GeneratePathProperty="true" />
+    <PackageReference Include="Krafs.Rimworld.Ref">
+      <Version>1.2.2905</Version>
+    </PackageReference>
     <PackageReference Include="Lib.Harmony">
       <Version>2.0.4</Version>
     </PackageReference>
-    <PackageReference Include="TaskPubliciser">
-      <Version>1.0.3</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-  <Target Name="MyCode" BeforeTargets="UpdateReferences">
-    <PropertyGroup>
-      <AssemblyCSharp>$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll</AssemblyCSharp>
-      <PubliciseOutputPath>$(PkgKrafs_Rimworld_Ref)\ref\net472\</PubliciseOutputPath>
-      <AssemblyCSharp_Publicised>$(PubliciseOutputPath)Assembly-CSharp_publicised.dll</AssemblyCSharp_Publicised>
-    </PropertyGroup>
-    <Publicise TargetAssemblyPath="$(AssemblyCSharp)" OutputPath="$(PkgKrafs_Rimworld_Ref)\ref\net472\" Condition="Exists('$(AssemblyCSharp)')" />
-    <ItemGroup>
-      <Reference Include="$(AssemblyCSharp_Publicised)">
-        <SpecificVersion>false</SpecificVersion>
-        <HintPath>$(AssemblyCSharp_Publicised)</HintPath>
-        <Implicit>true</Implicit>
-        <Private>false</Private>
-      </Reference>
-    </ItemGroup>
-  </Target>
-  <Target Name="UpdateReferences" AfterTargets="ResolveLockFileReferences">
-    <ItemGroup>
-      <Reference Remove="$(PkgKrafs_Rimworld_Ref)\ref\net472\Assembly-CSharp.dll" />
-    </ItemGroup>
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>call "$(SolutionDir)\Scripts\ModCopy 1.2.bat"
+call :REPORT_ERRORLEVEL
+goto :EOF
+
+:REPORT_ERRORLEVEL
+echo.
+if ERRORLEVEL 16 echo ***FATAL ERROR*** &amp; goto :EOF
+if ERRORLEVEL 8 echo **FAILED COPIES** &amp; goto :EOF
+if ERRORLEVEL 4 echo *MISMATCHES* &amp; goto :EOF
+if ERRORLEVEL 2 echo EXTRA FILES &amp; goto :EOF
+if ERRORLEVEL 1 echo Copy successful &amp; goto :EOF
+if ERRORLEVEL 0 echo –no change– &amp; goto :EOF</PostBuildEvent>
+  </PropertyGroup>
 </Project>

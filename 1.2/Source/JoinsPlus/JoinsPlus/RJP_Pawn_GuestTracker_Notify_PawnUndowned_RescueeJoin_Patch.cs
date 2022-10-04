@@ -14,12 +14,12 @@ namespace RescueeJoinPlus
 		public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
 		{
 			var instructionsList = new List<CodeInstruction>(instructions);
-			FieldInfo pawn = AccessTools.Field(typeof(Pawn_GuestTracker), "pawn");
+			FieldInfo pawn = AccessTools.Field(typeof(Pawn_GuestTracker),"pawn");
 			bool act = false;
 			bool replace = false;
 			// replace entire section where its decided if the pawn joins or leaves
-			for (int i = 0; i < instructionsList.Count; i++)
-			{
+            for (int i = 0; i < instructionsList.Count; i++)
+            { 
 				CodeInstruction instruction = instructionsList[i];
 				if (!act)
 				{
@@ -60,7 +60,7 @@ namespace RescueeJoinPlus
 		}
 
 		public static void DoRescueDialog(Pawn pawn)
-		{
+        {
 			DiaNode diaNode = new DiaNode(GenPersonStatText.CreateRescueeText(pawn));
 			DiaOption diaOptionDetails = new DiaOption(Translator.Translate("ClickForMoreInfo"));
 			diaOptionDetails.action = delegate ()
@@ -90,6 +90,6 @@ namespace RescueeJoinPlus
 			string text = TranslatorFormattedStringExtensions.Translate("RescueeAskJoin.WindowTitle", pawn.Map.Parent.Label);
 			Find.WindowStack.Add(new Dialog_NodeTree(diaNode, true, true, text));
 		}
-
+		
 	}
 }
